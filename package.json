@@ -1,0 +1,30 @@
+{
+  "name": "baseJump",
+  "version": "0.0.1",
+  "description": "Built to convert 128 bit buffers to base 62 strings. Supports base 36 and buffers of arbitrary size.",
+  "main": "src/baseJump.js",
+  "scripts": {
+    "test": "gulp test",
+    "install": "node-gyp configure build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arobson/baseJump"
+  },
+  "keywords": [
+    "base 62",
+    "base 36",
+    "128 bit",
+    "flake"
+  ],
+  "author": "Alex Robson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arobson/baseJump/issues"
+  },
+  "devDependencies": {
+    "gulp-mocha": "~0.4.1",
+    "gulp": "~3.5.6",
+    "should": "~3.2.0-beta1"
+  }
+}
