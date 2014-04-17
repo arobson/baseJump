@@ -1,5 +1,6 @@
 require( 'should' );
-var jump = require( '../src/baseJump.js' );
+var jump = require( '../src/baseJump.js' ),
+	_ = require( 'lodash' );
 
 describe( 'when ', function() {
 	
@@ -48,16 +49,16 @@ describe( 'when getting base 62 ids', function() {
 		var start = process.hrtime();
 		for( i = 0; i < 256; i ++ ) 
 			for( j = 0; j < 256; j++ )
-				list.push( jump.toBase62( [ j, i, 200, 100, 200, 50, 80 ] ) );
+				//							1  2   3    4    5    6   7   8   9   10  11  12  13  14  15
+				list.push( jump.toBase62( [ j, i, 200, 100, 200, 50, 80, 11, 56, 210, 67, 87, 92, 154, 213 ] ) );
 		
 		var diff = process.hrtime( start );
 		it( 'should be quick, yo', function() {
 			var ms = ( diff[ 0 ] * 1e9 + diff[ 1 ] ) / 1000000;
 			console.log( ms );
-			ms.should.be.lessThan( 1 );
+			var unique = _.unique( list ).length;
+			console.log( unique, list.length );
+			ms.should.be.lessThan( 10000 );
 		} );
 	} );
-	
-
-
 } );

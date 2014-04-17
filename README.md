@@ -50,6 +50,14 @@ var three = jump.toBase36( [ 100, 100, 200], 10 );
 
 ## Frequently Imagined Questions (FIQ)
 
+### How Do I Get This Crap To Install on Windows
+You'll need a pre-3.0 Python version installed an in your PATH.
+You'll also need a C++ compiler. This will be annoying to set up if you don't have one. But you're on Windows and that's just how they do.
+
+
+ * [VS 2010 C++ Express](http://go.microsoft.com/?linkid=9709949)
+ * [VS 2010 SP1](http://www.microsoft.com/en-us/download/confirmation.aspx?id=23691) - why isn't this just in the download? So that everything they do will remain a consistent hot bucket of non-sense :)
+
 ### Why?
 Flake ids should be 128 bits as the good Boundary intended. Or whoever came up with it. Anyway, I want flake ids and I want them today and in 128 bits and rendered as base 62 encoded, lexicograhpically sortable strings. And I want it to be as fast as possible. That is the only reason anyone should ever hurt themselves with C++.
 

@@ -12,7 +12,7 @@
         'cc/BigUnsignedInABase.cc'
       ],
       'cflags!': [ '-fno-exceptions' ],
-      'cflags_cc!': [ '-fno-exceptions' ],
+      'cflags_cc!': [ '-fno-exceptions', '-g' ],
       'conditions': [
         ['OS=="mac"', {
           'xcode_settings': {
