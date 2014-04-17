@@ -22,7 +22,7 @@ static const char base36_vals[] = "0123456789"
 
 BigInteger arrayToBigInteger(Local<Array> data, BigInteger::Index length, BigInteger::Sign sign) {
 	unsigned int pieceSizeInBits = 8;
-	unsigned int piecesPerBlock = 8;
+	unsigned int piecesPerBlock = 4;
 	unsigned int numBlocks = (length + piecesPerBlock - 1) / piecesPerBlock;
 
 	// Allocate our block array
