@@ -11,7 +11,7 @@ using namespace v8;
 using namespace node;
 using namespace std;
 
-#define EXCEPTION(message) ThrowException(Exception::TypeError(String::New(message)))
+#define ARGUMENTS_TYPE v8::internal::Arguments&
 
 static const char base62_vals[] = "0123456789"
 								  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -47,14 +47,14 @@ BigInteger arrayToBigInteger(Local<Array> data, BigInteger::Index length, BigInt
 	return x;
 }
 
-BigInteger GetBigIntegerFromInput(const Arguments& args) {
+BigInteger GetBigIntegerFromInput(_NAN_METHOD_ARGS_TYPE args) {
 	Local<Array> argv_handle = Local<Array>::Cast(args[0]);
 	int argc = argv_handle->Length();
 	BigInteger::Sign sign = BigInteger::positive;
 	return arrayToBigInteger( argv_handle, argc, sign );
 };
 
-string ToBase(const Arguments& args, int base, const char * list) {
+string ToBase(_NAN_METHOD_ARGS_TYPE args, int base, const char * list) {
 	BigInteger bigInt = GetBigIntegerFromInput( args );
 	int total = Local<Integer>::Cast(args[1])->Value();
 	int i = total - 1;
@@ -71,31 +71,31 @@ string ToBase(const Arguments& args, int base, const char * list) {
 	return str;
 };
 
-Handle<Value> To36(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(To36) {
+	NanScope();
 	if(args.Length() < 2 || !args[0]->IsArray() || !args[1]->NumberValue()) {
-		return ThrowException(Exception::Error(String::New("Argument 0 must be an array and Argument 1 must be an Integer")));
+		NanThrowError("Argument 0 must be an array and Argument 1 must be an Integer");
 	}
 	string result = ToBase(args, 36, base36_vals);
 	const char * carray = result.c_str();
-	return scope.Close(String::New(carray));
+	NanReturnValue(NanNew<String>(carray));
 };
 
-Handle<Value> To62(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(To62) {
+	NanScope();
 	if(args.Length() < 2 || !args[0]->IsArray() || !args[1]->NumberValue()) {
-		return ThrowException(Exception::Error(String::New("Argument 0 must be an array and Argument 1 must be an Integer")));
+		NanThrowError("Argument 0 must be an array and Argument 1 must be an Integer");
 	}
 	string result = ToBase(args, 62, base62_vals);
 	const char * carray = result.c_str();
-	return scope.Close(String::New(carray));
+	NanReturnValue(NanNew<String>(carray));
 };
 
 void init(Handle<Object> exports) {
-  exports->Set(String::NewSymbol("to62"),
-	  FunctionTemplate::New(To62)->GetFunction());
-  exports->Set(String::NewSymbol("to36"),
-	  FunctionTemplate::New(To36)->GetFunction());
+	exports->Set(NanNew<String>("to62"),
+		NanNew<FunctionTemplate>(To62)->GetFunction());
+	exports->Set(NanNew<String>("to36"),
+		NanNew<FunctionTemplate>(To36)->GetFunction());
 };
 
 NODE_MODULE(baseJump, init)

@@ -1,4 +1,8 @@
-node_modules
-gulpfile.js
-spec
-build
+demo/
+tmp/
+node_modules/
+log/
+spec/
+plato/
+coverage/
+build/
