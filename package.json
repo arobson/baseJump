@@ -27,5 +27,8 @@
     "gulp-mocha": "~0.4.1",
     "lodash": "^2.4.1",
     "should": "~3.2.0-beta1"
+  },
+  "dependencies": {
+    "nan": "^1.7.0"
   }
 }

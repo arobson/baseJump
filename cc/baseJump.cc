@@ -5,6 +5,7 @@
 #include <v8.h>
 #include <node.h>
 #include "./BigIntegerLibrary.hh"
+#include "nan.h"
 
 using namespace v8;
 using namespace node;
