@@ -1,26 +1,15 @@
 # baseJump
 
-	And alas, there was no fast way to produce a base 62 encoded string from a 128 bit buffer, for JS is not great at math.
-
-	And after hours of weeping, he arose and took up his browser and set forth to create a Node extension.
-	-- The Tale of How This Crap Got Wrote
-
 ## Disclaimer
 This project combines the 3 things I'm worst at:
  1. Math
  1. C++
  1. Computers
 
-That said, I have verified the junk this out-puts against third party tools that will freely convert between different numeric bases. I did not include these in the tests because I didn't feel like installing the world.
-
-Also, I'm pretty sure there's a memory leak in the C++ code :( It's on my list.
+That said, I have verified the output against third party tools that will freely convert between different numeric bases. I did not include these in the tests because reasons.
 
 ## Huge Thanks To Matt McCutchen
-I have one dependency that is packaged directly in this code, namely the venerable and blessed Matt Mccutchen's Big Integer Library. Seriously. If anyone deserves accolades for brillient open source, no-string-attached C++, it's Matt. He selflessly made his source PUBLIC DOMAIN. That means feckless nitwits like myself who don't Math good can use it to accomplish very cool things. Seriously. Assuming this C++ isn't so full of memory leaks you and your machine get swept away in a torrent of bits, this library enables very useful things.
-
-Anyway, he graciously hosts this source at: http://mattmccutchen.net/bigint/. If you need Maths in C++, I recommend this over using OpenSSL's BigNightmare library*.
-
-* yes, I'm an idiot.
+I have one dependency that is included in this code, namely the venerable and blessed Matt Mccutchen's Big Integer Library. Matt graciously hosts this source at: http://mattmccutchen.net/bigint/. If you need Maths in C++, I recommend this over using OpenSSL's BigInteger lib.
 
 ## API
 It's so easy even I can use it:
@@ -38,12 +27,12 @@ var one = jump.toBase62( [ 100, 100, 200 ] );
 // the max number of characters required to represent a 128 bit unsigned integer. Maybe. Who knows.
 // Certainly not me. Math is hard.
 // The good news is you can control this:
-var two = jump.toBase62( [ 100, 100, 200], 10 );
+var two = jump.toBase62( [ 100, 100, 200 ], 10 );
 
 // two == '000000t6Sy' Easy.
 
 // And base 36 calls work the same, btw, toBase36 defaults to 26 spaces.
-var three = jump.toBase36( [ 100, 100, 200], 10 );
+var three = jump.toBase36( [ 100, 100, 200 ], 10 );
 
 // three == '000007THES' ta-da
 ```
@@ -53,7 +42,6 @@ var three = jump.toBase36( [ 100, 100, 200], 10 );
 ### How Do I Get This Crap To Install on Windows
 You'll need a pre-3.0 Python version installed an in your PATH.
 You'll also need a C++ compiler. This will be annoying to set up if you don't have one. But you're on Windows and that's just how they do.
-
 
  * [VS 2010 C++ Express](http://go.microsoft.com/?linkid=9709949)
  * [VS 2010 SP1](http://www.microsoft.com/en-us/download/confirmation.aspx?id=23691) - why isn't this just in the download? So that everything they do will remain a consistent hot bucket of non-sense :)
@@ -66,6 +54,3 @@ Yeah. So. Take the code and call it something else. If other people ask me, I mi
 
 ### Why Didn't You Just Use [some other thing]
 I tried. Those other things were slow and/or irritating and/or required a ton of dependencies.
-
-### Windows Support?
-I dunno because I haven't tried it. I do know that I accept pull requests though :)
