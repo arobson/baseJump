@@ -7,6 +7,9 @@
     "test": "gulp test",
     "install": "node-gyp configure build"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/arobson/baseJump"
