@@ -7,9 +7,25 @@
 #include "./BigIntegerLibrary.hh"
 #include "nan.h"
 
-using namespace v8;
+// using namespace v8;
+using v8::Function;
+using v8::Local;
+using v8::Array;
+using v8::Integer;
+using v8::Number;
+using v8::Value;
+using v8::Handle;
+using v8::String;
+using v8::Object;
+using v8::FunctionTemplate;
+
 using namespace node;
 using namespace std;
+
+using Nan::HandleScope;
+using Nan::ThrowError;
+using Nan::New;
+using Nan::ReturnValue;
 
 #define ARGUMENTS_TYPE v8::internal::Arguments&
 
@@ -47,14 +63,14 @@ BigInteger arrayToBigInteger(Local<Array> data, BigInteger::Index length, BigInt
 	return x;
 }
 
-BigInteger GetBigIntegerFromInput(_NAN_METHOD_ARGS_TYPE args) {
+BigInteger GetBigIntegerFromInput(Nan::NAN_METHOD_ARGS_TYPE args) {
 	Local<Array> argv_handle = Local<Array>::Cast(args[0]);
 	int argc = argv_handle->Length();
 	BigInteger::Sign sign = BigInteger::positive;
 	return arrayToBigInteger( argv_handle, argc, sign );
 };
 
-string ToBase(_NAN_METHOD_ARGS_TYPE args, int base, const char * list) {
+string ToBase(Nan::NAN_METHOD_ARGS_TYPE args, int base, const char * list) {
 	BigInteger bigInt = GetBigIntegerFromInput( args );
 	int total = Local<Integer>::Cast(args[1])->Value();
 	int i = total - 1;
@@ -72,30 +88,30 @@ string ToBase(_NAN_METHOD_ARGS_TYPE args, int base, const char * list) {
 };
 
 NAN_METHOD(To36) {
-	NanScope();
-	if(args.Length() < 2 || !args[0]->IsArray() || !args[1]->NumberValue()) {
-		NanThrowError("Argument 0 must be an array and Argument 1 must be an Integer");
+	HandleScope();
+	if(info.Length() < 2 || !info[0]->IsArray() || !info[1]->NumberValue()) {
+		ThrowError("Argument 0 must be an array and Argument 1 must be an Integer");
 	}
-	string result = ToBase(args, 36, base36_vals);
+	string result = ToBase(info, 36, base36_vals);
 	const char * carray = result.c_str();
-	NanReturnValue(NanNew<String>(carray));
+	info.GetReturnValue().Set(New<String>(carray).ToLocalChecked());
 };
 
 NAN_METHOD(To62) {
-	NanScope();
-	if(args.Length() < 2 || !args[0]->IsArray() || !args[1]->NumberValue()) {
-		NanThrowError("Argument 0 must be an array and Argument 1 must be an Integer");
+	HandleScope();
+	if(info.Length() < 2 || !info[0]->IsArray() || !info[1]->NumberValue()) {
+		ThrowError("Argument 0 must be an array and Argument 1 must be an Integer");
 	}
-	string result = ToBase(args, 62, base62_vals);
+	string result = ToBase(info, 62, base62_vals);
 	const char * carray = result.c_str();
-	NanReturnValue(NanNew<String>(carray));
+	info.GetReturnValue().Set(New<String>(carray).ToLocalChecked());
 };
 
 void init(Handle<Object> exports) {
-	exports->Set(NanNew<String>("to62"),
-		NanNew<FunctionTemplate>(To62)->GetFunction());
-	exports->Set(NanNew<String>("to36"),
-		NanNew<FunctionTemplate>(To36)->GetFunction());
+	exports->Set(New<String>("to62").ToLocalChecked(),
+		New<FunctionTemplate>(To62)->GetFunction());
+	exports->Set(New<String>("to36").ToLocalChecked(),
+		New<FunctionTemplate>(To36)->GetFunction());
 };
 
 NODE_MODULE(baseJump, init)

@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.2.*
+
+### 0.2.0
+Updates to support Node 5.x.x (C++11).
+
 ## 0.1.*
 
 ### 0.1.1

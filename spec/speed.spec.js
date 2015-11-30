@@ -3,7 +3,7 @@ var jump = require( '../src/baseJump.js' );
 var _ = require( 'lodash' );
 var util = require( 'util' );
 
-describe( 'when getting converting TONS of buffers ... (lol, not really tho)', function() {
+describe.skip( 'when getting converting TONS of buffers ... (lol, not really tho)', function() {
 	var list;
 	var unique;
 	var ms;

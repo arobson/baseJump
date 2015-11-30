@@ -1,6 +1,6 @@
 {
   "name": "basejump",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Built to convert 128 bit buffers to base 62 strings. Supports base 36 and buffers of arbitrary size.",
   "main": "src/baseJump.js",
   "scripts": {
@@ -33,6 +33,6 @@
     "should": "~3.2.0-beta1"
   },
   "dependencies": {
-    "nan": "^1.7.0"
+    "nan": "^2.1.0"
   }
 }
