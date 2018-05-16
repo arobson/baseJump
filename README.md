@@ -1,5 +1,11 @@
 # baseJump
 
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![Version npm][version-image]][version-url]
+[![npm Downloads][downloads-image]][downloads-url]
+[![Dependencies][dependencies-image]][dependencies-url]
+
 ## Disclaimer
 This project combines the 3 things I'm worst at:
  1. Math
@@ -54,3 +60,14 @@ Yeah. So. Take the code and call it something else. If other people ask me, I mi
 
 ### Why Didn't You Just Use [some other thing]
 I tried. Those other things were slow and/or irritating and/or required a ton of dependencies.
+
+[travis-image]: https://travis-ci.org/arobson/basejump.svg?branch=master
+[travis-url]: https://travis-ci.org/arobson/basejump
+[coveralls-url]: https://coveralls.io/github/arobson/basejump?branch=master
+[coveralls-image]: https://coveralls.io/repos/github/arobson/basejump/badge.svg?branch=master
+[version-image]: https://img.shields.io/npm/v/basejump.svg?style=flat
+[version-url]: https://www.npmjs.com/package/basejump
+[downloads-image]: https://img.shields.io/npm/dm/basejump.svg?style=flat
+[downloads-url]: https://www.npmjs.com/package/basejump
+[dependencies-image]: https://img.shields.io/david/arobson/basejump.svg?style=flat
+[dependencies-url]: https://david-dm.org/arobson/basejump

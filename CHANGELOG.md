@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.0
+
+ * Add support for Node 10 (update nan dependency)
+ * Change build chain/tools
+
 ## 0.2.*
 
 ### 0.2.0
