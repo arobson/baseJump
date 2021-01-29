@@ -9,15 +9,15 @@ describe('when converting bunches of buffers', function () {
   before(function () {
     this.timeout(60000);
     list = [];
-    let start = process.hrtime();
+    const start = process.hrtime();
     for (let i = 0; i < 256; i++) {
       for (let j = 0; j < 256; j++) {
-        list.push(jump.toBase62([ j, i, 200, 100, 200, 50, 80, 11, 56, 210, 67, 87, 92 ]));
+        list.push(jump.toBase62([j, i, 200, 100, 200, 50, 80, 11, 56, 210, 67, 87, 92]));
       }
     }
 
-    let diff = process.hrtime(start);
-    ms = (diff[ 0 ] * 1e9 + diff[ 1 ]) / 1000000;
+    const diff = process.hrtime(start);
+    ms = (diff[0] * 1e9 + diff[1]) / 1000000;
     unique = _.uniq(list).length;
     console.log(`ok ${unique} in ${ms}`);
   });

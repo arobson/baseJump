@@ -1,4 +1,4 @@
-var clib = require('../build/Release/baseJump');
+const clib = require('../build/Release/baseJump');
 
 module.exports = {
   toBase62: function (buffer, length) {

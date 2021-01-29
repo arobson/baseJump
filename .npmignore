@@ -7,3 +7,4 @@ plato/
 coverage/
 build/
 .nyc_output
+.vscode
